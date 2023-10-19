@@ -19,9 +19,9 @@ public final class Task6 {
     private Task6() {
     }
 
-    @SuppressWarnings("ParameterAssignment")
     public static Integer task6(String inputs) {
-        int input = Integer.parseInt(inputs);
+        String newInput = inputs;
+        int input = Integer.parseInt(newInput);
         if (!(input > THOUSAND && input < FOUR_9) || input == FOUR_1 || input == FOUR_2 || input == FOUR_3
             || input == FOUR_4
             || input == FOUR_5 || input == FOUR_6 || input == FOUR_7 || input == FOUR_8) {
@@ -29,9 +29,9 @@ public final class Task6 {
         }
         int count = 0;
         while (input != NUM_6174) {
-            String[] prom = inputs.split("");
+            String[] prom = newInput.split("");
             LinkedList<Integer> list = new LinkedList<>();
-            for (int i = 0; i < inputs.length(); i++) {
+            for (int i = 0; i < newInput.length(); i++) {
                 list.add(Integer.parseInt(prom[i]));
             }
             Collections.sort(list);
@@ -39,9 +39,9 @@ public final class Task6 {
             list.sort(Collections.reverseOrder());
             int up = make(list);
             input = down - up;
-            inputs = String.valueOf(input);
+            newInput = String.valueOf(input);
             if (input < THOUSAND) {
-                inputs = "0" + inputs;
+                newInput = "0" + newInput;
             }
             count++;
         }
