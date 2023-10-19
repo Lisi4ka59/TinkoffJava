@@ -1,7 +1,11 @@
 package edu.hw1.tasks;
 
+import static edu.hw1.Config.TEN;
 
-public class Task2 {
+public final class Task2 {
+    private Task2() {
+    }
+
     public static Integer task2(String inputs) {
         long input = Math.abs(Long.parseLong(inputs.replaceFirst("\\.", "")));
         int res = 0;
@@ -9,7 +13,7 @@ public class Task2 {
             return 1;
         }
         while (input != 0) {
-            input = input / 10;
+            input = input / TEN;
             res++;
         }
         return res;

@@ -1,11 +1,21 @@
 package edu.hw1;
 
-import edu.hw1.tasks.*;
-
 import java.util.NoSuchElementException;
 import java.util.Scanner;
-
-import static edu.hw1.Messages.*;
+import java.util.logging.Logger;
+import static edu.hw1.Config.NUM_100;
+import static edu.hw1.Config.NUM_3;
+import static edu.hw1.Config.NUM_4;
+import static edu.hw1.Config.NUM_5;
+import static edu.hw1.Config.NUM_6;
+import static edu.hw1.Config.NUM_7;
+import static edu.hw1.Config.NUM_8;
+import static edu.hw1.Messages.ERR_MESSAGE;
+import static edu.hw1.Messages.EXIT_MESSAGE;
+import static edu.hw1.Messages.FORMAT_MESSAGE;
+import static edu.hw1.Messages.HELP_MESSAGE;
+import static edu.hw1.Messages.RES_MESSAGE;
+import static edu.hw1.tasks.Task0.task0;
 import static edu.hw1.tasks.Task1.task1;
 import static edu.hw1.tasks.Task2.task2;
 import static edu.hw1.tasks.Task3.task3;
@@ -17,137 +27,148 @@ import static edu.hw1.tasks.Task7.task7right;
 import static edu.hw1.tasks.Task8.task8;
 import static java.lang.Thread.sleep;
 
-public class Main {
+public final class Main {
+    private Main() {}
+
     static boolean exit = false;
-    private static String input(){
+
+    private static final Logger LOGGER_MAIN = Logger.getLogger(Main.class.getName());
+
+    private static String input() {
         Scanner scanner = new Scanner(System.in);
         String input = null;
         try {
              input = scanner.nextLine();
-        } catch (NoSuchElementException ex){
-            System.out.println("Принудительное завершение программы");
+        } catch (NoSuchElementException ex) {
+            LOGGER_MAIN.info(EXIT_MESSAGE);
             exit = true;
         }
         return input;
     }
+
+    @SuppressWarnings("CyclomaticComplexity")
     public static void main(String[] args) throws InterruptedException {
         Scanner scanner = new Scanner(System.in);
-
-        while (!exit){
+        while (!exit) {
             int input;
-            System.out.print("Введите номер проверяемого задания (от 0 до 8), \"exit\" для выхода, \"help\" для помощи: ");
+            LOGGER_MAIN.info("Введите номер проверяемого задания (от 0 до 8), "
+                + "\"exit\" для выхода, \"help\" для помощи: ");
             String inputs;
             try {
                 inputs = scanner.nextLine().trim().toLowerCase();
-            } catch (NoSuchElementException ex){
-                System.out.println("Принудительное завершение программы");
+            } catch (NoSuchElementException ex) {
+                LOGGER_MAIN.info(EXIT_MESSAGE);
                 exit = true;
                 continue;
             }
-            if (inputs.equals("exit")){
+            if (inputs.equals("exit")) {
                 exit = true;
-                System.out.println("Завершение программы");
-            } else if (inputs.equals("help")){
-                System.out.println(helpMessage);
+                LOGGER_MAIN.info("Завершение программы\n");
+            } else if (inputs.equals("help")) {
+                LOGGER_MAIN.info(HELP_MESSAGE + "\n");
             } else {
                 try {
                     input = Integer.parseInt(inputs);
                 } catch (NumberFormatException ex) {
-                    System.out.println("Некорректное значение! Попробуйте еще раз!");
+                    LOGGER_MAIN.info("Некорректное значение! Попробуйте еще раз!" + "\n");
                     continue;
                 }
                 if (input == 0) {
-                    Task0.task0();
-                    sleep(100);
+                    task0();
+                    sleep(NUM_100);
                 } else {
                     if (input == 1) {
-                        System.out.print("Введите время в формате \"mm:ss\": ");
+                        LOGGER_MAIN.info("Введите время в формате \"mm:ss\": ");
                         try {
-                            System.out.println("Результат: " + task1(input()));
-                        } catch (NumberFormatException ex){
-                            System.out.println(formatMessage);
-                        } catch (Exception ex){
-                            System.out.println(errMessage);
+                            LOGGER_MAIN.info(RES_MESSAGE + task1(input()) + "\n");
+                        } catch (NumberFormatException ex) {
+                            LOGGER_MAIN.info(FORMAT_MESSAGE + "\n");
+                        } catch (Exception ex) {
+                            LOGGER_MAIN.info(ERR_MESSAGE + "\n");
                         }
                     } else if (input == 2) {
-                        System.out.print("Введите любое число (целое или дробное): ");
+                        LOGGER_MAIN.info("Введите любое число (целое или дробное): ");
                         try {
-                            System.out.println("Результат: " + task2(input()));
-                        } catch (NumberFormatException ex){
-                            System.out.println(formatMessage);
-                        } catch (Exception ex){
-                            System.out.println(errMessage);
+                            LOGGER_MAIN.info(RES_MESSAGE + task2(input()) + "\n");
+                        } catch (NumberFormatException ex) {
+                            LOGGER_MAIN.info(FORMAT_MESSAGE + "\n");
+                        } catch (Exception ex) {
+                            LOGGER_MAIN.info(ERR_MESSAGE + "\n");
                         }
-                    } else if (input == 3) {
-                        System.out.print("Введите два массива целых чисел (числа в массиве должны идти через пробел, массивы должны быть разделены знаком \",\"): ");
+                    } else if (input == NUM_3) {
+                        LOGGER_MAIN.info("Введите два массива целых чисел (числа в массиве должны идти "
+                            + "через пробел, массивы должны быть разделены знаком \",\"): ");
                         try {
-                            System.out.println("Результат: " + task3(input()));
-                        } catch (NumberFormatException ex){
-                            System.out.println(formatMessage);
-                        } catch (Exception ex){
-                            System.out.println(errMessage);
+                            LOGGER_MAIN.info(RES_MESSAGE + task3(input()) + "\n");
+                        } catch (NumberFormatException ex) {
+                            LOGGER_MAIN.info(FORMAT_MESSAGE + "\n");
+                        } catch (Exception ex) {
+                            LOGGER_MAIN.info(ERR_MESSAGE + "\n");
                         }
-                    } else if (input == 4) {
-                        System.out.print("Введите строку, которую надо исправить: ");
+                    } else if (input == NUM_4) {
+                        LOGGER_MAIN.info("Введите строку, которую надо исправить: ");
                         try {
-                            System.out.println("Результат: " + task4(input()));
-                        } catch (NumberFormatException ex){
-                            System.out.println(formatMessage);
-                        } catch (Exception ex){
-                            System.out.println(errMessage);
+                            LOGGER_MAIN.info(RES_MESSAGE + task4(input()) + "\n");
+                        } catch (NumberFormatException ex) {
+                            LOGGER_MAIN.info(FORMAT_MESSAGE + "\n");
+                        } catch (Exception ex) {
+                            LOGGER_MAIN.info(ERR_MESSAGE + "\n");
                         }
-                    } else if (input == 5) {
-                        System.out.print("Введите целое положительное число: ");
+                    } else if (input == NUM_5) {
+                        LOGGER_MAIN.info("Введите целое положительное число: ");
                         try {
-                            System.out.println("Результат: " + task5(input()));
-                        } catch (NumberFormatException ex){
-                            System.out.println(formatMessage);
-                        } catch (Exception ex){
-                            System.out.println(errMessage);
+                            LOGGER_MAIN.info(RES_MESSAGE + task5(input()) + "\n");
+                        } catch (NumberFormatException ex) {
+                            LOGGER_MAIN.info(FORMAT_MESSAGE + "\n");
+                        } catch (Exception ex) {
+                            LOGGER_MAIN.info(ERR_MESSAGE + "\n");
                         }
-                    } else if (input == 6) {
-                        System.out.print("Введите целое четырехзначное число, в котором не все числа одинаковые: ");
+                    } else if (input == NUM_6) {
+                        LOGGER_MAIN.info("Введите целое четырехзначное число, в котором не все числа одинаковые: ");
                         try {
-                            System.out.println("Результат: " + task6(input()));
-                        } catch (NumberFormatException ex){
-                            System.out.println(formatMessage);
-                        } catch (Exception ex){
-                            System.out.println(errMessage);
+                            LOGGER_MAIN.info(RES_MESSAGE + task6(input()) + "\n");
+                        } catch (NumberFormatException ex) {
+                            LOGGER_MAIN.info(FORMAT_MESSAGE + "\n");
+                        } catch (Exception ex) {
+                            LOGGER_MAIN.info(ERR_MESSAGE + "\n");
                         }
-                    } else if (input == 7) {
-                        System.out.print("Введите \"right\" для циклического сдвига вправо и \"left\" для циклического сдвига влево: ");
+                    } else if (input == NUM_7) {
+                        LOGGER_MAIN.info("Введите \"right\" для циклического сдвига вправо и \"left\" для циклического"
+                            + " сдвига влево: ");
                         try {
                             String chose = input();
-                        if (chose.equalsIgnoreCase("right") || chose.equalsIgnoreCase("r")){
-                            System.out.print("Введите два числа (целые, положительные) через запятую (первое - число для сдвига, второе - размер циклического сдвига): ");
-                            System.out.println("Результат: " + task7right(input()));
+                        if (chose.equalsIgnoreCase("right") || chose.equalsIgnoreCase("r")) {
+                            LOGGER_MAIN.info("Введите два числа (целые, положительные) через запятую (первое - "
+                                + "число для сдвига, второе - размер циклического сдвига): ");
+                            LOGGER_MAIN.info(RES_MESSAGE + task7right(input()) + "\n");
                         } else if (chose.equalsIgnoreCase("left") || chose.equalsIgnoreCase("l")) {
-                            System.out.print("Введите два числа (целые, положительные) через запятую (первое - число для сдвига, второе - размер циклического сдвига): ");
-                            System.out.println("Результат: " + task7left(input()));
+                            LOGGER_MAIN.info("Введите два числа (целые, положительные) через запятую (первое - число "
+                                + "для сдвига, второе - размер циклического сдвига): ");
+                            LOGGER_MAIN.info(RES_MESSAGE + task7left(input()) + "\n");
                         } else {
-                            System.out.println("Некорректные входные данные!");
+                            LOGGER_MAIN.info("Некорректные входные данные!" + "\n");
                         }
-                        } catch (NumberFormatException ex){
-                            System.out.println(formatMessage);
-                        } catch (Exception ex){
-                            System.out.println(errMessage);
+                        } catch (NumberFormatException ex) {
+                            LOGGER_MAIN.info(FORMAT_MESSAGE + "\n");
+                        } catch (Exception ex) {
+                            LOGGER_MAIN.info(ERR_MESSAGE + "\n");
                         }
-                    } else if (input == 8) {
-                        System.out.print("Введите расположение фигур коней на доске (0 - нет коня, 1 - есть конь): ");
+                    } else if (input == NUM_8) {
+                        LOGGER_MAIN.info("Введите расположение фигур коней на доске (0 - нет коня, 1 - есть конь): ");
                         try {
                             StringBuilder stringBuilder = new StringBuilder();
-                            for (int i = 0; i < 7; i++){
+                            for (int i = 0; i < NUM_7; i++) {
                                 stringBuilder.append(input().trim()).append(":");
                             }
                             stringBuilder.append(input().trim());
-                            System.out.println("Результат: " + task8(stringBuilder.toString()));
-                        } catch (NumberFormatException ex){
-                            System.out.println(formatMessage);
-                        } catch (Exception ex){
-                            System.out.println(errMessage);
+                            LOGGER_MAIN.info(RES_MESSAGE + task8(stringBuilder.toString()) + "\n");
+                        } catch (NumberFormatException ex) {
+                            LOGGER_MAIN.info(FORMAT_MESSAGE + "\n");
+                        } catch (Exception ex) {
+                            LOGGER_MAIN.info(ERR_MESSAGE + "\n");
                         }
-                    }else {
-                        System.out.println("Некорректный номер задания! Попробуйте еще раз!");
+                    } else {
+                        LOGGER_MAIN.info("Некорректный номер задания! Попробуйте еще раз!" + "\n");
                     }
                 }
             }

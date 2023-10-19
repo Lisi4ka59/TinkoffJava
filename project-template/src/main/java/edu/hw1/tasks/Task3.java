@@ -1,9 +1,12 @@
 package edu.hw1.tasks;
 
-public class Task3 {
-    public static Boolean task3(String inputs){
+public final class Task3 {
+    private Task3() {
+    }
+
+    public static Boolean task3(String inputs) {
         String[] input = inputs.split(",");
-        if (input.length > 2){
+        if (input.length > 2) {
             throw new ArrayIndexOutOfBoundsException();
         }
         String[] inMassive = input[0].split(" ");

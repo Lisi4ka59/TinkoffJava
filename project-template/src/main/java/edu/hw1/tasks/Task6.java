@@ -2,15 +2,33 @@ package edu.hw1.tasks;
 
 import java.util.Collections;
 import java.util.LinkedList;
+import static edu.hw1.Config.FOUR_1;
+import static edu.hw1.Config.FOUR_2;
+import static edu.hw1.Config.FOUR_3;
+import static edu.hw1.Config.FOUR_4;
+import static edu.hw1.Config.FOUR_5;
+import static edu.hw1.Config.FOUR_6;
+import static edu.hw1.Config.FOUR_7;
+import static edu.hw1.Config.FOUR_8;
+import static edu.hw1.Config.FOUR_9;
+import static edu.hw1.Config.NUM_6174;
+import static edu.hw1.Config.TEN;
+import static edu.hw1.Config.THOUSAND;
 
-public class Task6 {
-    public static Integer task6(String inputs){
+public final class Task6 {
+    private Task6() {
+    }
+
+    @SuppressWarnings("ParameterAssignment")
+    public static Integer task6(String inputs) {
         int input = Integer.parseInt(inputs);
-        if (!(input > 1000 & input < 9999) || input == 1111 || input == 2222 || input == 3333 || input == 4444 || input == 5555 || input == 6666 || input == 7777 || input == 8888){
+        if (!(input > THOUSAND && input < FOUR_9) || input == FOUR_1 || input == FOUR_2 || input == FOUR_3
+            || input == FOUR_4
+            || input == FOUR_5 || input == FOUR_6 || input == FOUR_7 || input == FOUR_8) {
             throw new NumberFormatException();
         }
         int count = 0;
-        while (input != 6174) {
+        while (input != NUM_6174) {
             String[] prom = inputs.split("");
             LinkedList<Integer> list = new LinkedList<>();
             for (int i = 0; i < inputs.length(); i++) {
@@ -22,17 +40,18 @@ public class Task6 {
             int up = make(list);
             input = down - up;
             inputs = String.valueOf(input);
-            if (input < 1000){
-                inputs = 0 + inputs;
+            if (input < THOUSAND) {
+                inputs = "0" + inputs;
             }
             count++;
         }
         return count;
     }
-    private static int make(LinkedList<Integer> input){
+
+    private static int make(LinkedList<Integer> input) {
         int res = 0;
-        for (int i = 0; i < input.size(); i++){
-            res = res + ((int) Math.pow(10, i)) * input.get(i);
+        for (int i = 0; i < input.size(); i++) {
+            res = res + ((int) Math.pow(TEN, i)) * input.get(i);
         }
         return res;
     }
