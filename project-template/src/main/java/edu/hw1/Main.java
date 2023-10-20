@@ -28,7 +28,8 @@ import static edu.hw1.tasks.Task8.task8;
 import static java.lang.Thread.sleep;
 
 public final class Main {
-    private Main() {}
+    private Main() {
+    }
 
     static boolean exit = false;
 
@@ -38,7 +39,7 @@ public final class Main {
         Scanner scanner = new Scanner(System.in);
         String input = null;
         try {
-             input = scanner.nextLine();
+            input = scanner.nextLine();
         } catch (NoSuchElementException ex) {
             LOGGER_MAIN.info(EXIT_MESSAGE);
             exit = true;
@@ -137,17 +138,18 @@ public final class Main {
                             + " сдвига влево: ");
                         try {
                             String chose = input();
-                        if (chose.equalsIgnoreCase("right") || chose.equalsIgnoreCase("r")) {
-                            LOGGER_MAIN.info("Введите два числа (целые, положительные) через запятую (первое - "
-                                + "число для сдвига, второе - размер циклического сдвига): ");
-                            LOGGER_MAIN.info(RES_MESSAGE + task7right(input()) + "\n");
-                        } else if (chose.equalsIgnoreCase("left") || chose.equalsIgnoreCase("l")) {
-                            LOGGER_MAIN.info("Введите два числа (целые, положительные) через запятую (первое - число "
-                                + "для сдвига, второе - размер циклического сдвига): ");
-                            LOGGER_MAIN.info(RES_MESSAGE + task7left(input()) + "\n");
-                        } else {
-                            LOGGER_MAIN.info("Некорректные входные данные!" + "\n");
-                        }
+                            if (chose.equalsIgnoreCase("right") || chose.equalsIgnoreCase("r")) {
+                                LOGGER_MAIN.info("Введите два числа (целые, положительные) через запятую (первое - "
+                                    + "число для сдвига, второе - размер циклического сдвига): ");
+                                LOGGER_MAIN.info(RES_MESSAGE + task7right(input()) + "\n");
+                            } else if (chose.equalsIgnoreCase("left") || chose.equalsIgnoreCase("l")) {
+                                LOGGER_MAIN.info(
+                                    "Введите два числа (целые, положительные) через запятую (первое - число "
+                                        + "для сдвига, второе - размер циклического сдвига): ");
+                                LOGGER_MAIN.info(RES_MESSAGE + task7left(input()) + "\n");
+                            } else {
+                                LOGGER_MAIN.info("Некорректные входные данные!" + "\n");
+                            }
                         } catch (NumberFormatException ex) {
                             LOGGER_MAIN.info(FORMAT_MESSAGE + "\n");
                         } catch (Exception ex) {
