@@ -9,6 +9,7 @@ public class Input {
         String inputResult = "";
         boolean inputFlag = true;
         while (inputFlag) {
+            System.out.print("> ");
             try {
                 inputResult = scanner.nextLine().trim();
             } catch (NoSuchElementException ex) {

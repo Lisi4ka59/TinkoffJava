@@ -13,13 +13,14 @@ public class Invoker {
         commandMap.put("!exit", new ExitCommand());
         commandMap.put("!add", new AddWordCommand());
         commandMap.put("!dict", new ShowDictionaryCommand());
+        commandMap.put("!rem", new RemoveCommand());
     }
 
     public String run(String commandText) {
         String[] cmdText = commandText.split(" ");
         if (commandMap.containsKey(cmdText[0])) {
             Commands cmd = commandMap.get(cmdText[0]);
-            if (cmdText[0].equals("!add")){
+            if (cmdText[0].equals("!add") || cmdText[0].equals("!rem")){
                 try {
                     return cmd.execute(cmdText[1], Integer.parseInt(cmdText[2]));
                 }catch (Exception ex){

@@ -13,11 +13,13 @@ public class Dictionary implements Jsonable {
     public ConcurrentMap<String, Integer> wordDictionary = new ConcurrentHashMap<>();
     public void dictionarySet (JsonObject jsonObject) {
         ConcurrentMap<String, Integer> hashMap = new ConcurrentHashMap<>();
-        int i = 0;
         for (String key : jsonObject.keySet()) {
-            String[] difficult = jsonObject.get(key).toString().replace("}", "").replace("{", "").trim().split("=");
-            Integer integerValue = Integer.parseInt(difficult[1]);
-            hashMap.put(key, integerValue);
+            String[] difficult = jsonObject.get(key).toString().replace("}", "").replace("{", "").trim().split(",");
+            for (String diff : difficult) {
+                String[] newDifficult = diff.split("=");
+                Integer integerValue = Integer.parseInt(newDifficult[1]);
+                hashMap.put(newDifficult[0].trim(), integerValue);
+            }
         }
         this.wordDictionary = hashMap;
     }
