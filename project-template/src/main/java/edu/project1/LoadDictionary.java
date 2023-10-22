@@ -24,14 +24,14 @@ public class LoadDictionary {
             Reader reader = Files.newBufferedReader(Paths.get(FILE_NAME));
             JsonObject jsonObject = (JsonObject) Jsoner.deserialize(reader);
             dictionary.dictionarySet(jsonObject);
-            System.out.println("Collection uploaded");
+            System.out.println("Словарь загружен");
 
         } catch (JsonException | IllegalArgumentException | NullPointerException e) {
-            System.out.printf("Can not upload collection, data in the file incorrect! %s\n", e.getMessage());
+            System.out.printf("Can not upload dictionary, data in the file incorrect! %s\n", e.getMessage());
         } catch (SecurityException e) {
             System.out.printf("Do not have sufficient rights to read file %s\n", FILE_NAME);
         } catch (IOException e) {
-            System.out.printf("Can not upload collection, the file %s does not exist!\n", FILE_NAME);
+            System.out.printf("Can not upload dictionary, the file %s does not exist!\n", FILE_NAME);
         }
     }
 }

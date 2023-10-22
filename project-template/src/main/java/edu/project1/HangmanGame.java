@@ -30,7 +30,7 @@ public final class HangmanGame {
                 Выберете сложность игры (введите число):
                 Легкий - "1"
                 Средний - "2"
-                Сложный - "NUMB_3"
+                Сложный - "3"
                 NIGHTMARE - "4"
                 """);
             int inputGameMode;

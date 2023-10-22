@@ -22,7 +22,7 @@ public class SaveDictionary {
             json = Jsoner.prettyPrint(json);
             writer.write(json);
             writer.close();
-            System.out.println("Dictionary saved successfully");
+            System.out.println("Словарь сохранен успешно!");
         } catch (SecurityException e) {
             System.out.printf("Do not have sufficient rights to write file %s\n", FILE_NAME);
         } catch (Exception ex) {

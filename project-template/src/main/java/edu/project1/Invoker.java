@@ -34,13 +34,13 @@ public class Invoker {
                 try {
                     return cmd.execute(cmdText[1], Integer.parseInt(cmdText[2]));
                 } catch (Exception ex) {
-                    return String.format("Unknown command \"%s\". Type \"!help\" "
-                        + "to see list of commands", ex.getMessage());
+                    return String.format("Ошибка при выполнении команды \"%s\"!", ex.getMessage());
                 }
             }
             return cmd.execute();
         } else {
-            return String.format("Unknown command \"%s\". Type \"!help\" to see list of command", commandText);
+            return String.format("Неизвестная команда \"%s\". Введите \"!help\" "
+                + "чтобы увидеть список команд", commandText);
         }
     }
 }

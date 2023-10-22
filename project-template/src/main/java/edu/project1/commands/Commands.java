@@ -1,15 +1,16 @@
 package edu.project1.commands;
 
 public interface Commands {
+    String MESSAGE = "Unknown command!";
     default String execute(String args) {
-        return "Unknown command!";
+        return MESSAGE;
     }
 
     default String execute() {
-        return "Unknown commands!";
+        return MESSAGE;
     }
 
     default String execute(String word, Integer difficult) {
-        return "Users not support!";
+        return MESSAGE;
     }
 }
