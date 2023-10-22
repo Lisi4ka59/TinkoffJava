@@ -1,18 +1,25 @@
 package edu.project1;
 
 import java.util.Random;
-
+import static edu.project1.Config.NUMB_3;
+import static edu.project1.Config.NUMB_4;
 import static edu.project1.Input.input;
 import static edu.project1.LoadDictionary.load;
 
-public class HangmanGame {
+public final class HangmanGame {
+
+    private HangmanGame() {
+
+    }
+
     public static boolean exitFlag = false;
     public static Dictionary dictionary = new Dictionary();
-    public static final String fileName = "dictionary.txt";
+    public static final String FILE_NAME = "dictionary.txt";
     public static boolean lose = false;
     public static boolean win = false;
     public static Random rand = new Random();
 
+    @SuppressWarnings("RegexpSinglelineJava")
     public static void run() {
         load();
         System.out.println("Здравствуйте, Вас приветствует игра виселица!");
@@ -23,14 +30,15 @@ public class HangmanGame {
                 Выберете сложность игры (введите число):
                 Легкий - "1"
                 Средний - "2"
-                Сложный - "3"
+                Сложный - "NUMB_3"
                 NIGHTMARE - "4"
                 """);
             int inputGameMode;
             while (true) {
                 try {
                     inputGameMode = Integer.parseInt(input());
-                    if (!(inputGameMode == 1 || inputGameMode == 2 || inputGameMode == 3 || inputGameMode == 4)) {
+                    if (!(inputGameMode == 1 || inputGameMode == 2 || inputGameMode == NUMB_3
+                        || inputGameMode == NUMB_4)) {
                         throw new IllegalArgumentException();
                     }
                 } catch (IllegalArgumentException ex) {
@@ -46,20 +54,8 @@ public class HangmanGame {
             System.out.printf("Мы загадали слово из %d букв!\n", gameMode.countLetter);
             System.out.println("Попробуйте его отгадать! Вы можете вводить одну букву, или все слово сразу.");
             Alphabet alphabet = new Alphabet();
-            String letter;
             while (!(win || lose)) {
-                System.out.println(gameMode.hiddenWord);
-                System.out.printf("У вас осталось %d жизней.\n", gameMode.life);
-                System.out.printf("Вы уже ввели буквы: %s\n", alphabet.show());
-                while (true) {
-                    letter = input();
-                    if (letter.matches("[а-яА-Я]+")) {
-                        letter = letter.toLowerCase();
-                        break;
-                    }
-                    System.out.println("Вы ввели некорректное значение, попробуйте еще раз!");
-                }
-                gameMode.changeWord(letter);
+                gameProcess(alphabet, gameMode);
             }
             if (win) {
                 System.out.println("Наши поздравления! Вы победили!");
@@ -79,5 +75,22 @@ public class HangmanGame {
             lose = false;
             alphabet.clear();
         }
+    }
+
+    @SuppressWarnings("RegexpSinglelineJava")
+    public static void gameProcess(Alphabet alphabet, GameMode gameMode) {
+        String letter;
+        System.out.println(gameMode.hiddenWord);
+        System.out.printf("У вас осталось %d жизней.\n", gameMode.life);
+        System.out.printf("Вы уже ввели буквы: %s\n", alphabet.show());
+        while (true) {
+            letter = input();
+            if (letter.matches("[а-яА-Я]+")) {
+                letter = letter.toLowerCase();
+                break;
+            }
+            System.out.println("Вы ввели некорректное значение, попробуйте еще раз!");
+        }
+        gameMode.changeWord(letter);
     }
 }

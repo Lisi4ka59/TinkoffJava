@@ -4,7 +4,13 @@ import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 public class Input {
-    public static String input(){
+
+    private Input() {
+
+    }
+
+    @SuppressWarnings("RegexpSinglelineJava")
+    public static String input() {
         Scanner scanner = new Scanner(System.in);
         String inputResult = "";
         boolean inputFlag = true;

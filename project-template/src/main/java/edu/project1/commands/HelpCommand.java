@@ -1,8 +1,8 @@
 package edu.project1.commands;
 
-public class HelpCommand implements Commands{
+public class HelpCommand implements Commands {
     @Override
-    public String execute(){
+    public String execute() {
         return "help";
     }
 }

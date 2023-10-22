@@ -1,6 +1,11 @@
 package edu.project1;
 
-public class Game {
+public final class Main {
+
+    private Main() {
+
+    }
+
     public static void main(String[] args) {
         HangmanGame.run();
     }

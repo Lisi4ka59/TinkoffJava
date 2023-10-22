@@ -2,7 +2,6 @@ package edu.project1;
 
 import com.github.cliftonlabs.json_simple.JsonObject;
 import com.github.cliftonlabs.json_simple.Jsonable;
-
 import java.io.IOException;
 import java.io.StringWriter;
 import java.io.Writer;
@@ -11,7 +10,8 @@ import java.util.concurrent.ConcurrentMap;
 
 public class Dictionary implements Jsonable {
     public ConcurrentMap<String, Integer> wordDictionary = new ConcurrentHashMap<>();
-    public void dictionarySet (JsonObject jsonObject) {
+
+    public void dictionarySet(JsonObject jsonObject) {
         ConcurrentMap<String, Integer> hashMap = new ConcurrentHashMap<>();
         for (String key : jsonObject.keySet()) {
             String[] difficult = jsonObject.get(key).toString().replace("}", "").replace("{", "").trim().split(",");
@@ -23,12 +23,15 @@ public class Dictionary implements Jsonable {
         }
         this.wordDictionary = hashMap;
     }
+
     @Override
     public String toJson() {
         final StringWriter writable = new StringWriter();
         try {
             this.toJson(writable);
-        } catch (final IOException ignored) {}
+        } catch (final IOException ignored) {
+
+        }
         return writable.toString();
     }
 
