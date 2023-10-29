@@ -2,32 +2,38 @@ package edu.hw3.task5;
 
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public abstract class Task5 {
-    public static Contact[] parseContacts(String[] names, String sortOrder) {
-        if (names == null) {
+    public static Contact[] sortContacts(String[] names, String sortOrder) {
+        if (names == null || names.length == 0) {
             return new Contact[0];
         }
 
-        Contact[] contacts = new Contact[names.length];
-        for (int i = 0; i < names.length; i++) {
-            String fullName = names[i];
-            String[] nameParts = fullName.split(" ", 2);
-            String firstName = nameParts[0];
-            String lastName = nameParts.length > 1 ? nameParts[1] : "";
+        List<Contact> contacts = createContactList(names);
+        Comparator<Contact> comparator = getComparator(sortOrder);
 
-            contacts[i] = new Contact(firstName, lastName);
-        }
+        contacts.sort(comparator);
 
-        Comparator<Contact> comparator;
-        if (sortOrder.equalsIgnoreCase("ASC")) {
-            comparator = Comparator.comparing(Contact::getLastName).thenComparing(Contact::getFirstName);
+        return contacts.toArray(new Contact[0]);
+    }
+
+    private static List<Contact> createContactList(String[] names) {
+        return Arrays.stream(names)
+            .map(name -> {
+                String[] nameParts = name.split(" ");
+                String firstName = nameParts[0];
+                String lastName = nameParts.length > 1 ? nameParts[1] : nameParts[0];
+                return new Contact(firstName, lastName);
+            }).collect(Collectors.toList());
+    }
+
+    private static Comparator<Contact> getComparator(String sortOrder) {
+        if (sortOrder.equalsIgnoreCase("DESC")) {
+            return Comparator.comparing(Contact::getLastName).reversed();
         } else {
-            comparator = Comparator.comparing(Contact::getLastName).reversed().thenComparing(Contact::getFirstName);
+            return Comparator.comparing(Contact::getLastName);
         }
-
-        Arrays.sort(contacts, comparator);
-
-        return contacts;
     }
 }

@@ -3,56 +3,52 @@ package edu.hw3;
 import edu.hw3.task5.Contact;
 import edu.hw3.task5.Task5;
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class Task5Test {
 
     @Test
-    void testParseContactsAscendingOrder() {
+    void testSortContactsAscending() {
         String[] names = { "John Locke", "Thomas Aquinas", "David Hume", "Rene Descartes" };
-        Contact[] expected = {
-            new Contact("Thomas", "Aquinas"),
-            new Contact("Rene", "Descartes"),
-            new Contact("David", "Hume"),
-            new Contact("John", "Locke")
-        };
+        String sortOrder = "ASC";
 
-        Contact[] actual = Task5.parseContacts(names, "ASC");
+        Contact[] sortedContacts = Task5.sortContacts(names, sortOrder);
 
-        assertArrayEquals(expected, actual);
+        assertEquals("Thomas Aquinas", sortedContacts[0].toString());
+        assertEquals("Rene Descartes", sortedContacts[1].toString());
+        assertEquals("David Hume", sortedContacts[2].toString());
+        assertEquals("John Locke", sortedContacts[3].toString());
     }
 
     @Test
-    void testParseContactsDescendingOrder() {
+    void testSortContactsDescending() {
         String[] names = { "Paul Erdos", "Leonhard Euler", "Carl Gauss" };
-        Contact[] expected = {
-            new Contact("Carl", "Gauss"),
-            new Contact("Leonhard", "Euler"),
-            new Contact("Paul", "Erdos")
-        };
+        String sortOrder = "DESC";
 
-        Contact[] actual = Task5.parseContacts(names, "DESC");
+        Contact[] sortedContacts = Task5.sortContacts(names, sortOrder);
 
-        assertArrayEquals(expected, actual);
+        assertEquals("Carl Gauss", sortedContacts[0].toString());
+        assertEquals("Leonhard Euler", sortedContacts[1].toString());
+        assertEquals("Paul Erdos", sortedContacts[2].toString());
     }
 
     @Test
-    void testParseContactsEmptyArray() {
+    void testSortContactsEmptyArray() {
         String[] names = {};
-        Contact[] expected = {};
+        String sortOrder = "DESC";
 
-        Contact[] actual = Task5.parseContacts(names, "ASC");
+        Contact[] sortedContacts = Task5.sortContacts(names, sortOrder);
 
-        assertArrayEquals(expected, actual);
+        assertEquals(0, sortedContacts.length);
     }
 
     @Test
-    void testParseContactsNullArray() {
+    void testSortContactsNullArray() {
         String[] names = null;
-        Contact[] expected = {};
+        String sortOrder = "DESC";
 
-        Contact[] actual = Task5.parseContacts(names, "ASC");
+        Contact[] sortedContacts = Task5.sortContacts(names, sortOrder);
 
-        assertArrayEquals(expected, actual);
+        assertEquals(0, sortedContacts.length);
     }
 }
