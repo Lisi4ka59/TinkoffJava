@@ -20,6 +20,7 @@ public class Main {
 
     public void generateMaze() {
         // Initialize maze with walls
+
         for (int i = 0; i < height; i++) {
             for (int j = 0; j < width; j++) {
                 maze[i][j] = 1;
@@ -28,6 +29,12 @@ public class Main {
 
         // Generate maze starting from the top left corner
         generateMazeRecursive(0, 0);
+        for (int i = 0; i< height; i++) {
+            maze[0][i] = 1;
+        }
+        for (int i = 0; i< width; i++) {
+            maze[i][0] = 1;
+        }
 
         // Set the entrance and exit of the maze
         maze[0][0] = 0;
@@ -64,6 +71,7 @@ public class Main {
                 generateMazeRecursive(newRow, newCol);
             }
         }
+
     }
 
     public void printMaze() {
