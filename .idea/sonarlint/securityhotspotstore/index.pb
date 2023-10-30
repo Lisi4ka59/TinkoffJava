@@ -1,0 +1,25 @@
+
+9
+	README.md,8\e\8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d
+7
+pom.xml,4\4\442292b8a7efeabbe4cc176709b833b1792140ec
+T
+$src/main/java/edu/project1/Main.java,a\7\a7fa52c0560eaaee25a8df35a0afae94584b487a
+S
+#src/main/java/edu/hw1/Messages.java,2\d\2d662e70fff6bb615cb4bf47651617ef1a75fb01
+Q
+!src/main/java/edu/hw1/Config.java,c\6\c68efdb98627ca190e9dc9702e75715152c7d60d
+V
+&src/main/java/edu/hw1/tasks/Task3.java,f\5\f577de700c4968b800bb6bcd513cf60e2abd7da2
+V
+&src/main/java/edu/hw1/tasks/Task4.java,c\0\c0c7900ac26e5c3e2fb1e3e0f4afba345eee0f79
+V
+&src/main/java/edu/hw1/tasks/Task5.java,8\e\8e13e1fa960a7d61a2a61add1a4672dcc97bc4e6
+V
+&src/main/java/edu/hw1/tasks/Task6.java,0\2\02f9e0964e71fb0695d4c7416a3f4d0f06aec67f
+V
+&src/main/java/edu/hw1/tasks/Task7.java,e\b\ebbb0e914618071a54d22a326f5ef11a1201b122
+V
+&src/main/java/edu/hw1/tasks/Task8.java,3\3\330c07e43a89bc089d5993d400b8d12feefc1166
+O
+src/main/java/edu/hw1/Main.java,6\3\63667e1960dc2769921c608a1d5cfc7faa5ef046
