@@ -3,13 +3,11 @@ import org.junit.jupiter.api.Test;
 import java.time.LocalDate;
 import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class DateParserTest {
+class DateParserTest {
 
     @Test
-    public void testParseDateValidFormats() {
+    void testParseDateValidFormats() {
         Optional<LocalDate> result1 = Task3.DateParser.parseDate("2020-10-15");
         assertEquals(LocalDate.of(2020, 10, 15), result1.orElse(null));
 
@@ -21,14 +19,14 @@ public class DateParserTest {
     }
 
     @Test
-    public void testParseDateInvalidFormats() {
+    void testParseDateInvalidFormats() {
         Optional<LocalDate> result1 = Task3.DateParser.parseDate("2020-15-10");
-        assertFalse(result1.isPresent());
+        assertEquals(result1, Optional.empty());
 
         Optional<LocalDate> result2 = Task3.DateParser.parseDate("31/3/1976");
-        assertFalse(result2.isPresent());
+        assertEquals(result2, Optional.empty());
 
         Optional<LocalDate> result3 = Task3.DateParser.parseDate("random string");
-        assertFalse(result3.isPresent());
+        assertEquals(result3, Optional.empty());
     }
 }

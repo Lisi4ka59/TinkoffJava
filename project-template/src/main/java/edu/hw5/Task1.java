@@ -1,6 +1,7 @@
 package edu.hw5;
 
 import java.time.Duration;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 public class Task1 {
@@ -10,10 +11,13 @@ public class Task1 {
             Duration totalDuration = Duration.ZERO;
 
                 String[] parts = inputs.split(" - ");
-                LocalTime startTime = LocalTime.parse(parts[0].split(", ")[1]);
-                LocalTime endTime = LocalTime.parse(parts[1].split(", ")[1]);
+            String parsedStartTime = (parts[0].replace(", ", "T") + ":00");
+            String parsedEndTime = (parts[1].replace(", ", "T") + ":00");
+                LocalDateTime startTime = LocalDateTime.parse(parsedStartTime);
+                LocalDateTime endTime = LocalDateTime.parse(parsedEndTime);
+
                 if (endTime.isBefore(startTime)) {
-                    endTime = endTime.plusHours(24);
+                    return "Некорректные входные данные!";
 
                 }
                 totalDuration = totalDuration.plus(Duration.between(startTime, endTime));
