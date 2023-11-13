@@ -2,7 +2,6 @@ package edu.hw5;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 
 public class Task1 {
     public static class TimeDurationCalculator {

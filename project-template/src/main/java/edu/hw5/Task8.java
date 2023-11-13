@@ -15,7 +15,8 @@ public class Task8 {
 
             // Проверка на соответствие регулярным выражениям
             boolean isOddLength = input.matches(oddLengthRegex);
-            boolean isStartWith0OddLengthOrStartWith1EvenLength = input.matches(startWith0OddLengthOrStartWith1EvenLengthRegex);
+            boolean isStartWith0OddLengthOrStartWith1EvenLength = input.matches(
+                startWith0OddLengthOrStartWith1EvenLengthRegex);
             boolean isMultipleOf3Zeros = input.matches(multipleOf3ZerosRegex);
             boolean isNot11Or111 = input.matches(not11Or111Regex);
             boolean isOddOnes = input.matches(oddOnesRegex);
@@ -26,10 +27,5 @@ public class Task8 {
                 && isNot11Or111 && isOddOnes && isAtLeastTwoZerosAtMostOneOne && isNoConsecutiveOnes;
         }
 
-        public static void main(String[] args) {
-            System.out.println(validateString("010101")); // Вернет true
-            System.out.println(validateString("")); // Вернет false
-            System.out.println(validateString("00")); // Вернет true
-        }
     }
 }

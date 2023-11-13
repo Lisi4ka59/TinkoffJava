@@ -17,12 +17,5 @@ public class Task6 {
 
             return m.matches();
         }
-
-        public static void main(String[] args) {
-            String s = "abc";
-            String t = "achfdbaabgabcaabg";
-            boolean result = isSubsequence(s, t);
-            System.out.println(result); // Выведет true, так как "abc" является подпоследовательностью "achfdbaabgabcaabg"
-        }
     }
 }
